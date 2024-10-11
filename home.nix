@@ -36,6 +36,16 @@
       prezto = {
         enable = true;
         prompt.theme = "pure";
+        tmux = {
+          autoStartLocal = true;
+          defaultSessionName = "Maze";
+        };
+      };
+      oh-my-zsh = {
+        enable = true;
+        plugins = [
+          "git"
+        ];
       };
       shellAliases = {
         ":q" = "exit";
