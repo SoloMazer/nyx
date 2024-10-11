@@ -147,7 +147,17 @@
 
   # List services that you want to enable:
 
-  services.flatpak.enable = true;
+  services.flatpak = {
+    enable = true;
+    update.auto = {
+      enable = true;
+      onCalendar = "weekly"; # Default value
+    };
+    packages = [
+      "com.github.scrivanolabs.scrivano"
+      "com.github.tchx84.Flatseal"
+    ];
+  };
 
   # Screenrotation and iio-sensors
   hardware.sensor.iio.enable = true;
