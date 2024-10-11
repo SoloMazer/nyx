@@ -15,6 +15,7 @@
       which-key.enable = true; # To find keybindings easily
       indent-blankline.enable = true;
       notify.enable = true;
+      tmux-navigator.enable = true;
 
       lualine.enable = true;
 

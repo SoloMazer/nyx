@@ -58,43 +58,7 @@
       # themeFile = "Duskfox";
       # and remove this 
       extraConfig = ''
-        # Keybindings for kitty splits
-        # Create a new window splitting the space used by the existing one so that
-        # the two windows are placed one above the other
-        map f5 launch --location=hsplit
 
-        # Create a new window splitting the space used by the existing one so that
-        # the two windows are placed side by side
-        map f6 launch --location=vsplit
-
-        # Create a new window splitting the space used by the existing one so that
-        # the two windows are placed side by side if the existing window is wide or
-        # one above the other if the existing window is tall.
-        map f4 launch --location=split
-
-        # Rotate the current split, changing its split axis from vertical to
-        # horizontal or vice versa
-        map f7 layout_action rotate
-
-        # Move the active window in the indicated direction
-        map shift+up move_window up
-        map shift+left move_window left
-        map shift+right move_window right
-        map shift+down move_window down
-
-        # Move the active window to the indicated screen edge
-        map ctrl+shift+up layout_action move_to_screen_edge top
-        map ctrl+shift+left layout_action move_to_screen_edge left
-        map ctrl+shift+right layout_action move_to_screen_edge right
-        map ctrl+shift+down layout_action move_to_screen_edge bottom
-
-        # Switch focus to the neighboring window in the indicated direction
-        map ctrl+left neighboring_window left
-        map ctrl+right neighboring_window right
-        map ctrl+up neighboring_window up
-        map ctrl+down neighboring_window down
-
-        
         # Nightfox colors for Kitty
         ## name: duskfox
         ## upstream: https://github.com/edeneast/nightfox.nvim/raw/main/extra/duskfox/kitty.conf
@@ -148,73 +112,47 @@
       '';
     };
     
-    # tmux = {
-    #   enable = true;
-    #   # terminal = "screen-256color";
-    #   # # sensibleOnTop = true;
-    #   # shell = "\${pkgs.zsh}/bin/zsh";
-    #   # plugins = with pkgs.tmuxPlugins; [
-    #   #   # vim-tmux-navigator
-    #   #   # yank
-    #   #   # sensible
-    #   #   nord
-    #   # ];
-    #   extraConfig = ''
-    #     set-option -sa terminal-overrides ",xterm*:Tc"
-    #     set -g mouse on
-    #
-    #     unbind C-b
-    #     set -g prefix C-Space
-    #     bind C-Space send-prefix
-    #
-    #     # Vim style pane selection
-    #     bind h select-pane -L
-    #     bind j select-pane -D 
-    #     bind k select-pane -U
-    #     bind l select-pane -R
-    #
-    #     # Start windows and panes at 1, not 0
-    #     set -g base-index 1
-    #     set -g pane-base-index 1
-    #     set-window-option -g pane-base-index 1
-    #     set-option -g renumber-windows on
-    #
-    #     # Use Alt-arrow keys without prefix key to switch panes
-    #     bind -n M-Left select-pane -L
-    #     bind -n M-Right select-pane -R
-    #     bind -n M-Up select-pane -U
-    #     bind -n M-Down select-pane -D
-    #
-    #     # Shift arrow to switch windows
-    #     bind -n S-Left  previous-window
-    #     bind -n S-Right next-window
-    #
-    #     # Shift Alt vim keys to switch windows
-    #     bind -n M-H previous-window
-    #     bind -n M-L next-window
-    #
-    #     set -g @catppuccin_flavour 'mocha'
-    #
-    #     set -g @plugin 'tmux-plugins/tpm'
-    #     set -g @plugin 'tmux-plugins/tmux-sensible'
-    #     set -g @plugin 'christoomey/vim-tmux-navigator'
-    #     set -g @plugin 'dreamsofcode-io/catppuccin-tmux'
-    #     set -g @plugin 'tmux-plugins/tmux-yank'
-    #
-    #     run '~/.tmux/plugins/tpm/tpm'
-    #
-    #     # set vi-mode
-    #     set-window-option -g mode-keys vi
-    #     # keybindings
-    #     bind-key -T copy-mode-vi v send-keys -X begin-selection
-    #     bind-key -T copy-mode-vi C-v send-keys -X rectangle-toggle
-    #     bind-key -T copy-mode-vi y send-keys -X copy-selection-and-cancel
-    #
-    #     bind '"' split-window -v -c "#{pane_current_path}"
-    #     bind % split-window -h -c "#{pane_current_path}"
-    #   '';
-    #
-    # };
+    tmux = {
+      enable = true;
+      terminal = "screen-256color";
+      baseIndex = 1;
+      keyMode = "vi";
+      mouse = true;
+      newSession = true;
+      prefix = "C-space";
+      plugins = with pkgs.tmuxPlugins; [
+        vim-tmux-navigator
+        yank
+        nord
+        prefix-highlight
+      ];
+      extraConfig = ''
+        
+        # tmux status bar on top
+        set-option -g status-position top
+
+        # Use Alt-arrow keys without prefix key to switch panes
+        bind -n M-Left select-pane -L
+        bind -n M-Right select-pane -R
+        bind -n M-Up select-pane -U
+        bind -n M-Down select-pane -D
+
+        # Shift arrow to switch windows
+        bind -n S-Left  previous-window
+        bind -n S-Right next-window
+        
+        # Keybindings for tmux-yank
+        # use "prefix + [" to enter copy mode
+        bind-key -T copy-mode-vi v send-keys -X begin-selection
+        bind-key -T copy-mode-vi C-v send-keys -X rectangle-toggle
+        bind-key -T copy-mode-vi y send-keys -X copy-selection-and-cancel
+        
+        # Split into cwd
+        bind '"' split-window -v -c "#{pane_current_path}"
+        bind % split-window -h -c "#{pane_current_path}"
+
+      '';
+    };
     
     git = {
        enable = true;
