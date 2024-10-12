@@ -93,7 +93,7 @@
   users.users.solomazer = {
     isNormalUser = true;
     description = "SoloMazer";
-    extraGroups = [ "networkmanager" "wheel" "libvirtd"];
+    extraGroups = [ "networkmanager" "wheel" "libvirtd" "audio"];
     packages = [
     #  pkgs.thunderbird
     ];
@@ -110,10 +110,6 @@
   # users.defaultUserShell = pkgs.zsh;
   # To get completion for system packages
   environment.pathsToLink = [ "/share/zsh" ];
-
-
-  # Install firefox.
-  programs.firefox.enable = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;

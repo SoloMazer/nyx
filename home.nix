@@ -163,6 +163,10 @@
 
       '';
     };
+
+    firefox = {
+      enable = true;
+    };
     
     git = {
        enable = true;
@@ -175,7 +179,6 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs;[
-
 
     # # It is sometimes useful to fine-tune packages, for example, by applying3rd Year Undergraduate, Integrated BS-MS Majoring in 
     # # overrides. You can do that directly here, just don't forget the
@@ -195,7 +198,7 @@
     discord
     ardour
     obsidian
-    # texliveFull
+    texliveFull
     kitty-themes
     krita
     inkscape
