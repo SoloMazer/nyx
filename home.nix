@@ -16,6 +16,23 @@
   # release notes.
   home.stateVersion = "24.05"; # Please read the comment before changing.
 
+  gtk = {
+    enable = true;
+    theme = {
+      package = pkgs.nordic;
+      name = "Nordic";
+    };
+    iconTheme = {
+      package = pkgs.papirus-nord;
+      name = "Papirus-Dark";
+    };
+    cursorTheme = {
+      package = pkgs.nordzy-cursor-theme;
+      name = "Nordzy-cursors";
+      size = 16;
+    };
+  };
+
   # Programs managed via Home-Manager
   programs = {
 
@@ -36,10 +53,6 @@
       prezto = {
         enable = true;
         prompt.theme = "pure";
-        tmux = {
-          autoStartLocal = true;
-          defaultSessionName = "Maze";
-        };
       };
       oh-my-zsh = {
         enable = true;
@@ -62,63 +75,53 @@
         font_size = "10.5";
         background_opacity = "0.9";
         hide_window_decorations = true;
-        enabled_layouts = "splits"; 
       };
-      # Enable once kitty-themes is updated
-      # themeFile = "Duskfox";
-      # and remove this 
       extraConfig = ''
 
-        # Nightfox colors for Kitty
-        ## name: duskfox
-        ## upstream: https://github.com/edeneast/nightfox.nvim/raw/main/extra/duskfox/kitty.conf
+        # Nord Colorscheme for Kitty
+        # Based on:
+        # - https://gist.github.com/marcusramberg/64010234c95a93d953e8c79fdaf94192
+        # - https://github.com/arcticicestudio/nord-hyper
 
-        background #232136
-        foreground #e0def4
-        selection_background #433c59
-        selection_foreground #e0def4
-        cursor_text_color #232136
-        url_color #a3be8c
+        foreground            #D8DEE9
+        background            #2E3440
+        selection_foreground  #000000
+        selection_background  #FFFACD
+        url_color             #0087BD
+        cursor                #81A1C1
 
-        # Cursor
-        # uncomment for reverse background
-        # cursor none
-        cursor #e0def4
+        # black
+        color0   #3B4252
+        color8   #4C566A
 
-        # Border
-        active_border_color #569fba
-        inactive_border_color #4b4673
-        bell_border_color #ea9a97
+        # red
+        color1   #BF616A
+        color9   #BF616A
 
-        # Tabs
-        active_tab_background #569fba
-        active_tab_foreground #191726
-        inactive_tab_background #433c59
-        inactive_tab_foreground #817c9c
+        # green
+        color2   #A3BE8C
+        color10  #A3BE8C
 
-        # normal
-        color0 #393552
-        color1 #eb6f92
-        color2 #a3be8c
-        color3 #f6c177
-        color4 #569fba
-        color5 #c4a7e7
-        color6 #9ccfd8
-        color7 #e0def4
+        # yellow
+        color3   #EBCB8B
+        color11  #EBCB8B
 
-        # bright
-        color8 #47407d
-        color9 #f083a2
-        color10 #b1d196
-        color11 #f9cb8c
-        color12 #65b1cd
-        color13 #ccb1ed
-        color14 #a6dae3
-        color15 #e2e0f7
+        # blue
+        color4  #81A1C1
+        color12 #81A1C1
 
-        # extended colors
-        color16 #ea9a97
-        color17 #eb98c3      
+        # magenta
+        color5   #B48EAD
+        color13  #B48EAD
+
+        # cyan
+        color6   #88C0D0
+        color14  #8FBCBB
+
+        # white
+        color7   #E5E9F0
+        color15  #ECEFF4
+
       '';
     };
     
@@ -174,13 +177,14 @@
        userEmail = "solomazer@gmail.com";
     };
 
+
   };
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs;[
 
-    # # It is sometimes useful to fine-tune packages, for example, by applying3rd Year Undergraduate, Integrated BS-MS Majoring in 
+    # # It is sometimes useful to fine-tune packages, for example, by applying 
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
     # # fonts?
@@ -202,13 +206,15 @@
     kitty-themes
     krita
     inkscape
+    captive-browser
+    motrix
+    ferdium
 
     # Some nice gnome extensions
     gnomeExtensions.pop-shell
     gnomeExtensions.blur-my-shell
     gnomeExtensions.caffeine
     gnomeExtensions.media-controls
-    gnomeExtensions.custom-accent-colors
     gnomeExtensions.user-themes
     gnomeExtensions.compiz-alike-magic-lamp-effect
     gnomeExtensions.hide-top-bar
@@ -218,6 +224,7 @@
     xsel
     ripgrep
     fd
+    manix
 
     # # You can also create simple shell scripts directly inside your
     # # configuration. For example, this adds a command 'my-hello' to your

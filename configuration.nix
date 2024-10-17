@@ -9,6 +9,7 @@
     [ 
       ./hardware-configuration.nix
       ./optimizations.nix
+      ./gaming.nix
       ./nixVim/default.nix
     ];
 
@@ -17,6 +18,7 @@
   home-manager = {
     extraSpecialArgs = { inherit inputs; };
     users."solomazer" = import ./home.nix;
+    backupFileExtension = "backup2";
   };
 
   # Bootloader.
@@ -69,6 +71,9 @@
     variant = "";
   };
 
+  # # Setting up fingerprint using fprintd
+  # services.fprintd.enable = true;
+  # services.fprintd.tod.enable = true;
 
   # Enable sound with pipewire.
   hardware.pulseaudio.enable = false;
@@ -113,6 +118,10 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+
+  # Enabling Hyprland
+  programs.hyprland.enable = true;
+  programs.hyprland.package = inputs.hyprland.packages."${pkgs.system}".hyprland;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget

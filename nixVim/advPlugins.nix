@@ -6,6 +6,7 @@
       enable = true;
       settings.auto_install = true;
     };
+    treesitter-context.enable = true;
 
     # nvim cmp configuration
     cmp-nvim-lua.enable = true;
@@ -59,12 +60,8 @@
         };
       };
     };
-    cmp-nvim-lsp = {
-      enable = true; # LSP
-    };
-    cmp-buffer = {
-      enable = true;
-    };
+    cmp-nvim-lsp.enable = true;
+    cmp-buffer.enable = true;
     cmp-path = {
       enable = true; # file system paths
     };

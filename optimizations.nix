@@ -14,7 +14,7 @@
         experimental-features = nix-command flakes
       '';
     };
-    # WARN: Opinionated: disable channels
+    #WARN: Opinionated: disable channels
     nix.channel.enable = false;
 
     # Bootloader.
@@ -29,15 +29,11 @@
     # boot.initrd.kernelModules = ["amdgpu"];
     # Enable Out Of Memory Daemon to help manage memory usage
     systemd.oomd.enable = true;
-    # Enabling hardware accelerated graphics drivers
-    hardware.graphics.enable = true;
-    # Enabling gpu drivers
-    services.xserver.videoDrivers = ["amdgpu"];
 
     # Setup Automatic Upgrade
     system.autoUpgrade = {
       enable = true;
-      dates = "daily";
+      dates = "weekly";
       flags = [ "--flake" "~/.config/nixos/" ];
       allowReboot = true;
       rebootWindow = {
@@ -63,10 +59,14 @@
     dates = ["weekly"];
     };
 
+    # For Ardour to work properly
     security.pam.loginLimits = [
       { domain = "@audio"; item = "memlock"; type = "hard"; value = "-1"; }
       { domain = "@audio"; item = "memlock"; type = "soft"; value = "-1"; }
     ];
+
+
+
 
   };
 }

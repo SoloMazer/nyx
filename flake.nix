@@ -12,6 +12,7 @@
     	inputs.nixpkgs.follows = "nixpkgs";
 		};
     nix-flatpak.url = "github:gmodena/nix-flatpak";
+    hyprland.url = "github:hyprwm/Hyprland"; 
 	};
 	outputs = { self, nixpkgs, ... }@inputs:
 let 

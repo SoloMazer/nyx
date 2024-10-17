@@ -1,30 +1,13 @@
-{ pkgs, ... }:
 { 
   programs.nixvim = {
-    extraPlugins = [pkgs.vimPlugins.minimap-vim];
-    # Enabling the mini.nvim plugin suite
     plugins.mini = {
       enable = true;
+      mockDevIcons = true;
       modules = {
-        
-        # Loading the mini.ai
         ai = {
           n_lines = 50;
           search_method = "cover_or_next";
         };
-        
-        # loading mini.comment
-        comment = {
-          #TODO but this mapping in keymaps.nix later
-          mappings = {
-            comment = "<leader>/";
-            comment_line = "<leader>/";
-            comment_visual = "<leader>/";
-            textobject = "<leader>/";
-          };
-        };
-        
-        # loading mini.starter
         starter = {
           content_hooks = {
             "__unkeyed-1.adding_bullet" = {
@@ -60,32 +43,16 @@
             };
           };
         };
-        
-        # loading mini.surrond
-        surround = {
-          mappings = {
-            add = "gsa";
-            delete = "gsd";
-            find = "gsf";
-            find_left = "gsF";
-            highlight = "gsh";
-            replace = "gsr";
-            update_n_lines = "gsn";
-          };
-        };
-
-        # loading mini.animate
-        animate = {};
-        icons = {};
-        pairs = {};
+        comment = {};
+        surround = {};
         sessions = {};
-
-        #TODO: To be removed later
-        files = {};
-
+        pairs = {};
+        icons = {};
+        animate = {};
       };
     };
     extraConfigLua = ''
+
       --NOTE: Additional Config for mini.animate
       require("mini.animate").setup({
         resize = {
@@ -122,6 +89,7 @@
           return key
         end, { expr = true })
       end
+
     '';
   };
 }
