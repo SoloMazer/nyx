@@ -14,6 +14,7 @@
     ];
 
   optimizations.enable = true;
+  gaming.enable = true;
 
   home-manager = {
     extraSpecialArgs = { inherit inputs; };
@@ -62,8 +63,8 @@
   services.xserver.desktopManager.gnome.enable = true;
   services.gnome.core-utilities.enable = false;
   # Removing preinstalled bloat
-  environment.gnome.excludePackages = [ pkgs.gnome-tour ];
-  services.xserver.excludePackages = [ pkgs.xterm ];
+  environment.gnome.excludePackages = with pkgs; [ gnome-tour ];
+  services.xserver.excludePackages = with pkgs; [ xterm ];
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -118,10 +119,6 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-
-  # Enabling Hyprland
-  programs.hyprland.enable = true;
-  programs.hyprland.package = inputs.hyprland.packages."${pkgs.system}".hyprland;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget

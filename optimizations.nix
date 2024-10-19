@@ -33,8 +33,15 @@
     # Setup Automatic Upgrade
     system.autoUpgrade = {
       enable = true;
-      dates = "weekly";
-      flags = [ "--flake" "~/.config/nixos/" ];
+      dates = "daily";
+      flake = "/home/solomazer/.config/nixos/flake.nix";
+      flags = [
+        "--update-input" "nixpkgs"
+        "--update-input" "home-manager"
+        "--update-input" "nixvim"
+        "--update-input" "nix-flatpak"
+        "--commit-lock-file"
+      ];
       allowReboot = true;
       rebootWindow = {
         #WARN: If working in reboot window, change timings to prevent reboot without notice.

@@ -131,6 +131,7 @@
       baseIndex = 1;
       keyMode = "vi";
       mouse = true;
+      shell = "/run/current-system/sw/bin/zsh";
       newSession = true;
       prefix = "C-space";
       plugins = with pkgs.tmuxPlugins; [
@@ -177,7 +178,6 @@
        userEmail = "solomazer@gmail.com";
     };
 
-
   };
 
   # The home.packages option allows you to install Nix packages into your
@@ -209,6 +209,7 @@
     captive-browser
     motrix
     ferdium
+    onlyoffice-desktopeditors
 
     # Some nice gnome extensions
     gnomeExtensions.pop-shell
