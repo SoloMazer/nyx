@@ -3,6 +3,7 @@
 
 	inputs = {
 		nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
 		home-manager = {
 			url = "github:nix-community/home-manager";
     	inputs.nixpkgs.follows = "nixpkgs";
@@ -12,18 +13,20 @@
     	inputs.nixpkgs.follows = "nixpkgs";
 		};
     nix-flatpak.url = "github:gmodena/nix-flatpak";
+    hyprland.url = "github:hyprwm/Hyprland";
 	};
-	outputs = { self, nixpkgs, ... }@inputs:
+
+	outputs = { nixpkgs, ... }@inputs:
 let 
 		system = "x86_64-linux";
-		pkgs = nixpkgs.legacyPackages.${system};
 in
 	{
 		nixosConfigurations = {
 			nixos = nixpkgs.lib.nixosSystem {
+        inherit system;
 				specialArgs = { inherit inputs; };
 				modules = [
-					./configuration.nix
+					./hosts/flaky/configuration.nix
 					inputs.home-manager.nixosModules.home-manager
 					inputs.nixvim.nixosModules.nixvim
           inputs.nix-flatpak.nixosModules.nix-flatpak

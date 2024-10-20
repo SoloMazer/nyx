@@ -8,18 +8,28 @@
   imports = 
     [ 
       ./hardware-configuration.nix
-      ./optimizations.nix
-      ./gaming.nix
-      ./nixVim/default.nix
+      ../../modules/custom/default.nix
+      ../../modules/nixVim/default.nix
     ];
 
-  optimizations.enable = true;
+  # Specify FLAKE varible to system flake for nh to find it
+  environment.sessionVariables = {
+     FLAKE = "/home/solomazer/.config/nixos";
+  };
+
+  # Enable required modules here
+  flatpak.enable = true;
   gaming.enable = true;
+  gnome.enable = true;
+  hyprland.enable = true;
+  music.enable = true;
+  optimizations.enable = true;
+  virtualisation.enable = true;
 
   home-manager = {
     extraSpecialArgs = { inherit inputs; };
-    users."solomazer" = import ./home.nix;
-    backupFileExtension = "backup2";
+    users."solomazer" = import ../../users/soloMazer/home.nix;
+    # backupFileExtension = "backup2";
   };
 
   # Bootloader.
@@ -57,24 +67,11 @@
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
-
-  # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-  services.gnome.core-utilities.enable = false;
-  # Removing preinstalled bloat
-  environment.gnome.excludePackages = with pkgs; [ gnome-tour ];
-  services.xserver.excludePackages = with pkgs; [ xterm ];
-
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
     variant = "";
   };
-
-  # # Setting up fingerprint using fprintd
-  # services.fprintd.enable = true;
-  # services.fprintd.tod.enable = true;
 
   # Enable sound with pipewire.
   hardware.pulseaudio.enable = false;
@@ -104,10 +101,6 @@
     #  pkgs.thunderbird
     ];
   };
-  # Specify FLAKE varible to system flake for nh to find it
-  environment.sessionVariables = {
-     FLAKE = "/home/solomazer/.config/nixos";
-  };
 
   # Changing default shell to zsh and setting it for my user
   programs.zsh.enable = true;
@@ -123,22 +116,13 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    iio-sensor-proxy
     curl 
     stow
     wget
     git
     nh
-    distrobox
     gparted
   ];
-
-  # Virtualization
-  virtualisation.libvirtd.enable = true;
-  programs.virt-manager.enable = true;
-  services.qemuGuest.enable = true;
-  services.spice-vdagentd.enable = true;
-  virtualisation.podman.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -149,21 +133,6 @@
   # };
 
   # List services that you want to enable:
-
-  services.flatpak = {
-    enable = true;
-    update.auto = {
-      enable = true;
-      onCalendar = "weekly"; # Default value
-    };
-    packages = [
-      "com.github.scrivanolabs.scrivano"
-      "com.github.tchx84.Flatseal"
-    ];
-  };
-
-  # Screenrotation and iio-sensors
-  hardware.sensor.iio.enable = true;
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;

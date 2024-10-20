@@ -1,4 +1,4 @@
-{ pkgs, config, lib, ... }:
+{ pkgs, config, lib, inputs, ... }:
 {
 
   options = {
@@ -17,12 +17,12 @@
     programs.steam.enable = true;
     programs.steam.gamescopeSession.enable = true;
 
-    environment.systemPackages = with pkgs; [
+    environment.systemPackages = [
       # nxengine-evo
-      (retroarch.override {
-        cores = with libretro; [
-          desmume
-          citra
+      (pkgs.retroarch.override {
+        cores = [
+          pkgs.libretro.desmume
+          inputs.nixpkgs-stable.legacyPackages.${pkgs.system}.libretro.citra
         ];
       })
     ];

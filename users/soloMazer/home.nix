@@ -1,6 +1,14 @@
 { pkgs, ... }:
 
 {
+  imports = [
+    ../../modules/custom/defaulthm.nix
+  ];
+
+  # Enabling my custome home-manager modules
+  gnomehm.enable = true;
+  hyprhm.enable = true;
+
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "solomazer";
@@ -16,22 +24,6 @@
   # release notes.
   home.stateVersion = "24.05"; # Please read the comment before changing.
 
-  gtk = {
-    enable = true;
-    theme = {
-      package = pkgs.nordic;
-      name = "Nordic";
-    };
-    iconTheme = {
-      package = pkgs.papirus-nord;
-      name = "Papirus-Dark";
-    };
-    cursorTheme = {
-      package = pkgs.nordzy-cursor-theme;
-      name = "Nordzy-cursors";
-      size = 16;
-    };
-  };
 
   # Programs managed via Home-Manager
   programs = {
@@ -182,7 +174,7 @@
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
-  home.packages = with pkgs;[
+  home.packages = with pkgs; [
 
     # # It is sometimes useful to fine-tune packages, for example, by applying 
     # # overrides. You can do that directly here, just don't forget the
@@ -190,17 +182,12 @@
     # # fonts?
     (nerdfonts.override { fonts = [ "Hermit" ]; })
 
-    gnome-tweaks
-    nautilus
-    sushi
-    gnome-calendar
     vscode
     okular
     vlc
     vivaldi
     spotify
     discord
-    ardour
     obsidian
     texliveFull
     kitty-themes
@@ -210,22 +197,6 @@
     motrix
     ferdium
     onlyoffice-desktopeditors
-
-    # Some nice gnome extensions
-    gnomeExtensions.pop-shell
-    gnomeExtensions.blur-my-shell
-    gnomeExtensions.caffeine
-    gnomeExtensions.media-controls
-    gnomeExtensions.user-themes
-    gnomeExtensions.compiz-alike-magic-lamp-effect
-    gnomeExtensions.hide-top-bar
-    gnomeExtensions.hot-edge
-
-    #neovim dependencies
-    xsel
-    ripgrep
-    fd
-    manix
 
     # # You can also create simple shell scripts directly inside your
     # # configuration. For example, this adds a command 'my-hello' to your
