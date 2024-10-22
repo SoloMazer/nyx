@@ -15,7 +15,6 @@
       packages = [
         "com.github.scrivanolabs.scrivano"
         "com.github.tchx84.Flatseal"
-        "org.freedownloadmanager.Manager"
       ];
     };
   };

@@ -4,10 +4,15 @@
     hyprhm.enable = 
     lib.mkEnableOption "enables home-manager hyprland module";
   };
-  config = lib.mkIf config.hyprhm.enable { 
+  config = lib.mkIf config.hyprhm.enable {
     wayland.windowManager.hyprland = {
       enable = true;
+      plugins = [
+        # inputs.hyprland-plugins.packages."${pkgs.system}".hyprexpo
+        # inputs.hypr-dynamic-cursors.packages.${pkgs.system}.hypr-dynamic-cursors
+      ];
       settings = {
+
         # This is an example Hyprland config file.
         # Refer to the wiki for more information.
         # https://wiki.hyprland.org/Configuring/Configuring-Hyprland/
@@ -25,7 +30,7 @@
         ################
 
         # See https://wiki.hyprland.org/Configuring/Monitors/
-        monitor = ",preferred,auto,auto";
+        monitor = "eDP-1,1920x1200@60,0x0,1";
 
 
         ###################
@@ -37,7 +42,7 @@
         # Set programs that you use
         "$terminal" = "kitty";
         "$fileManager" = "dolphin";
-        "$menu" = "wofi --show drun" ;
+        "$menu" = "rofi -show drun -show-icons" ;
 
 
         #################
@@ -47,9 +52,13 @@
         # Autostart necessary processes (like notifications daemons, status bars, etc.)
         # Or execute your favorite apps at launch like this:
 
-        # exec-once = $terminal
-        # exec-once = nm-applet &
-        # exec-once = waybar & hyprpaper & firefox
+        exec-once = [ 
+          "$terminal"
+          "hyprpaper"
+          "waybar"
+          "iio-hyprland"
+          "nm-applet --indicator"
+        ];
 
 
         #############################
@@ -72,29 +81,31 @@
         # https://wiki.hyprland.org/Configuring/Variables/#general
         general = {
             gaps_in = "5";
-            gaps_out = "20";
+            gaps_out = "10";
 
-            border_size = "2";
+            border_size = "3";
 
             # https://wiki.hyprland.org/Configuring/Variables/#variable-types for info about colors
-            "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
-            "col.inactive_border" = "rgba(595959aa)";
+            "col.active_border" = "rgba(8fbcbbee) rgba(88c0d0ee) rgba(81a1c1ee) rgba(5e81acee) 45deg";
+            "col.inactive_border" = "rgba(4c566aaa)";
 
             # Set to true enable resizing windows by clicking and dragging on borders and gaps
-            resize_on_border = "false";
+            resize_on_border = "true";
 
             # Please see https://wiki.hyprland.org/Configuring/Tearing/ before you turn this on
             allow_tearing = "false";
+            resize_corner = "0";
 
             layout = "dwindle";
         };
 
         # https://wiki.hyprland.org/Configuring/Variables/#decoration
         decoration = {
-            rounding = "10";
+            rounding = "7";
             # Change transparency of focused and unfocused windows
-            active_opacity = "1.0";
-            inactive_opacity = "1.0";
+            active_opacity = "0.95";
+            fullscreen_opacity = "0.95";
+            inactive_opacity = "0.9";
 
             drop_shadow = "true";
             shadow_range = "4";
@@ -173,7 +184,7 @@
 
             follow_mouse = 1;
 
-            sensitivity = 0; # -1.0 - 1.0, 0 means no modification.
+            sensitivity = 0.7; # -1.0 - 1.0, 0 means no modification.
 
             touchpad = {
                 natural_scroll = true;
@@ -201,7 +212,7 @@
         "$mainMod" = "SUPER"; # Sets "Windows" key as main modifier
 
         # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
-        bind = [ 
+        bind = [
           "$mainMod, Q, exec, $terminal"
           "$mainMod, C, killactive,"
           "$mainMod, M, exit,"
@@ -210,6 +221,7 @@
           "$mainMod, R, exec, $menu"
           "$mainMod, P, pseudo, # dwindle"
           "$mainMod, J, togglesplit, # dwindle"
+          "$mainMod, B, exec, pkill -SIGUSR1 waybar"
           # Move focus with mainMod + arrow keys
           "$mainMod, left, movefocus, l"
           "$mainMod, right, movefocus, r"
@@ -243,6 +255,8 @@
           # Scroll through existing workspaces with mainMod + scroll
           "$mainMod, mouse_down, workspace, e+1"
           "$mainMod, mouse_up, workspace, e-1"
+          # Plugin bindings for hyprexpo
+          # "SUPER, grave, hyprexpo:expo, toggle"
         ];
 
         # Move/resize windows with mainMod + LMB/RMB and dragging
@@ -287,7 +301,75 @@
           # Fix some dragging issues with XWayland
           "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"       
         ];
+
+        ###############
+        ### PLUGINS ###
+        ###############
+        # plugin = { 
+        #   hyprexpo = {
+        #     columns = 3;
+        #     gap_size = 5;
+        #     bg_col = "rgb(111111)";
+        #     workspace_method = "center current"; # [center/first] [workspace] e.g. first 1 or center m+1
+        #
+        #     enable_gesture = "true"; # laptop touchpad
+        #     gesture_fingers = "3";  # 3 or 4
+        #     gesture_distance = "300"; # how far is the "max"
+        #     gesture_positive = "true"; # positive = swipe down. Negative = swipe up.
+        #   };
+        # };
+        # "plugin:dynamic-cursors" = {
+        #   # enables the plugin
+        #   enabled = true;
+        #
+        #   # sets the cursor behaviour, supports these values:
+        #   # tilt    - tilt the cursor based on x-velocity
+        #   # rotate  - rotate the cursor based on movement direction
+        #   # stretch - stretch the cursor shape based on direction and velocity
+        #   # none    - do not change the cursors behaviour
+        #   mode = "stretch";
+        #
+        #   # minimum angle difference in degrees after which the shape is changed
+        #   # smaller values are smoother, but more expensive for hw cursors
+        #   threshold = 2;
+        #   # for mode = stretch
+        #   stretch = {
+        #     # controls how much the cursor is stretched
+        #     # this value controls at which speed (px/s) the full stretch is reached
+        #     limit = 3000;
+        #
+        #     # relationship between speed and stretch amount, supports these values:
+        #     # linear             - a linear function is used
+        #     # quadratic          - a quadratic function is used
+        #     # negative_quadratic - negative version of the quadratic one, feels more aggressive
+        #     function = "quadratic";
+        #   };
+        # };
+
       };
     };
+    
+    services.hyprpaper = {
+      enable = true;
+      settings = {
+        ipc = "on";
+        splash = false;
+        splash_offset = 2.0;
+
+        preload = [ 
+          "/home/solomazer/Pictures/Wallpapers/ign_AnimeRoomBoard-2.jpg" 
+        ];
+
+        wallpaper = [
+          ",/home/solomazer/Pictures/Wallpapers/ign_AnimeRoomBoard-2.jpg"
+        ];
+      };
+    };
+
+    # Enable the mako notifications daemon
+    services.mako = {
+      enable = true;
+    };
+
   };
 }

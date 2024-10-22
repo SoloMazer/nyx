@@ -29,7 +29,7 @@
   home-manager = {
     extraSpecialArgs = { inherit inputs; };
     users."solomazer" = import ../../users/soloMazer/home.nix;
-    # backupFileExtension = "backup2";
+    backupFileExtension = "backup3";
   };
 
   # Bootloader.

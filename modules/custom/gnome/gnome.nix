@@ -17,12 +17,12 @@
       environment.gnome.excludePackages = with pkgs; [ gnome-tour ];
       services.xserver.excludePackages = with pkgs; [ xterm ];
       
-      environment.systemPackages = with pkgs; [
-        iio-sensor-proxy
-      ];
+      # environment.systemPackages = with pkgs; [
+      #   iio-sensor-proxy
+      # ];
 
-      # Screenrotation and iio-sensors
-      hardware.sensor.iio.enable = true;
+      # # Screenrotation and iio-sensors
+      # hardware.sensor.iio.enable = true;
 
     };
 }

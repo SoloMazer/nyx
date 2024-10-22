@@ -29,7 +29,6 @@
       signcolumn = "yes";
       # Backspace
       backspace = "indent,eol,start";
-      swapfile = true;
       # Seeting a right margin
       colorcolumn = "125";
       #split windows
@@ -38,6 +37,7 @@
       breakindent = true;
       undofile = true;
       scrolloff = 10;
+      swapfile = false;
     };
   };
 }
