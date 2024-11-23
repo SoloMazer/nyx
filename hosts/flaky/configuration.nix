@@ -8,33 +8,36 @@
   imports = 
     [ 
       ./hardware-configuration.nix
-      ../../modules/custom/default.nix
-      ../../modules/nixVim/default.nix
+      ../../modules/default.nix
     ];
+
+  nix = {
+    extraOptions = ''
+      experimental-features = nix-command flakes
+    '';
+  };
+  #WARN: Opinionated: disable channels
+  nix.channel.enable = false;
 
   # Specify FLAKE varible to system flake for nh to find it
   environment.sessionVariables = {
      FLAKE = "/home/solomazer/.config/nixos";
   };
 
-  # Enable required modules here
-  flatpak.enable = true;
-  gaming.enable = true;
-  gnome.enable = true;
-  hyprland.enable = true;
-  music.enable = true;
-  optimizations.enable = true;
-  virtualisation.enable = true;
+  # Screenrotation and iio-sensors
+  hardware.sensor.iio.enable = true;
+  hardware.bluetooth.enable = true;
 
   home-manager = {
     extraSpecialArgs = { inherit inputs; };
     users."solomazer" = import ../../users/soloMazer/home.nix;
-    backupFileExtension = "backup3";
+    backupFileExtension = "backup10";
   };
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.timeout = 5; #5 secs to select generation to boot into
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -83,7 +86,6 @@
     pulse.enable = true;
     # If you want to use JACK applications, uncomment this
     #jack.enable = true;
-
     # use the example session manager (no others are packaged yet so this is enabled by default,
     # no need to redefine it in your config for now)
     #media-session.enable = true;
@@ -120,7 +122,6 @@
     stow
     wget
     git
-    nh
     gparted
   ];
 

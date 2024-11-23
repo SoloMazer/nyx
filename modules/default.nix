@@ -1,12 +1,14 @@
 # Lists all the custom system level modules 
 {
   imports = [
-    ./gnome/gnome.nix
-    ./virtualisation.nix
+    ./nixVim/nixvim.nix
+    ./gnome.nix
+    # ./virtualisation.nix
     ./music.nix
-    ./hyprland/hyprland.nix
     ./gaming.nix
     ./optimizations.nix
-    ./flatpak.nix
+    ./cosmic.nix
+    ./iio-cosmic.nix
   ];
+
 }

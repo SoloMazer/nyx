@@ -1,28 +1,30 @@
 { pkgs, config, lib, ... }:
 {
-  options = {
-    gnomehm.enable = 
-    lib.mkEnableOption "enables user specifc home-manager code for gnome";
-  };
-
-  config = lib.mkIf config.gnomehm.enable {
-
+    #theming desktop apps and stuff
     gtk = {
       enable = true;
-      theme = {
-        package = pkgs.nordic;
-        name = "Nordic";
-      };
+      # theme = {
+      #   package = pkgs.nordic;
+      #   name = "Nordic";
+      # };
       iconTheme = {
         package = pkgs.papirus-nord;
         name = "Papirus-Dark";
       };
-      cursorTheme = {
-        package = pkgs.nordzy-cursor-theme;
-        name = "Nordzy-cursors";
-        size = 16;
-      };
+      # cursorTheme = {
+      #   package = pkgs.bibata-cursors;
+      #   name = "Bibata-Modern-Classic";
+      #   size = 16;
+      # };
     };
+
+    # # qt theming
+    # qt = {
+    #   enable = true;
+    #   platformTheme.name = "gtk";
+    #   style.name = "adwaita-dark";
+    #   style.package = pkgs.adwaita-qt;
+    # };
 
     home.packages = with pkgs; [
       gnome-tweaks
@@ -40,6 +42,4 @@
       gnomeExtensions.hide-top-bar
       gnomeExtensions.hot-edge
     ];
-
-  };
 }

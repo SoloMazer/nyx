@@ -1,12 +1,5 @@
-{ pkgs, config, lib, inputs, ... }:
+{ pkgs, inputs, ... }:
 {
-
-  options = {
-    gaming.enable = 
-    lib.mkEnableOption "enables gaming specific tools";
-  };
-
-  config = lib.mkIf config.gaming.enable {
     # For Gaming stuff
     # Enabling hardware accelerated graphics drivers
     hardware.graphics.enable = true;
@@ -18,14 +11,18 @@
     programs.steam.gamescopeSession.enable = true;
 
     environment.systemPackages = [
-      # nxengine-evo
+      pkgs.bottles
+      pkgs.lutris
+      pkgs.heroic
       (pkgs.retroarch.override {
         cores = [
           pkgs.libretro.desmume
           inputs.nixpkgs-stable.legacyPackages.${pkgs.system}.libretro.citra
         ];
       })
+      # Recoding and editing software
+      pkgs.obs-studio
+      pkgs.kdenlive
     ];
-  };
 
 }

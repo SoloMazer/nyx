@@ -9,7 +9,7 @@
           owner = "Isrothy";
           repo = "neominimap.nvim";
           rev = "main";
-          hash = "sha256-CEsOXwnYG2jhLSA5oow8EsmmuWRdeS06QiuTTSlfCYc=";
+          hash = "sha256-b+BdomwjuodDM5yBVsYuMR/lsjkAGj16KNMHDqYVuxQ=";
         };
       })
     ];

@@ -1,12 +1,5 @@
-{ pkgs, config, lib, ... }:
+{ pkgs, ... }:
 {
-
-  options = {
-    virtualisation.enable = 
-    lib.mkEnableOption "Enables virtualisation specific tools";
-  };
-
-config = lib.mkIf config.virtualisation.enable {
     environment.systemPackages = with pkgs; [
       distrobox
     ];
@@ -17,5 +10,4 @@ config = lib.mkIf config.virtualisation.enable {
     services.qemuGuest.enable = true;
     services.spice-vdagentd.enable = true;
     virtualisation.podman.enable = true;
-  };
 }

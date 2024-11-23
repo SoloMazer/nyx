@@ -8,7 +8,7 @@
       dressing.enable = true; # for better ui plugin
       noice.enable = true; # expermental cool ui plugin
       indent-blankline.enable = true; # indent line support
-      # notify.enable = true; # for cute notifications
+      notify.enable = true; # for cute notifications
       which-key.enable = true; # To find keybindings easily
       tmux-navigator.enable = true; # To navigate in tmux
       todo-comments.enable = true; # Make and Manage TODOs

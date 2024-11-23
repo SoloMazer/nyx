@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 {
     programs.nixvim.enable = true;
     # Import all your configuration modules here
@@ -19,5 +19,7 @@
       ripgrep
       fd
       manix
+      nixd
     ];
+    nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
 }
