@@ -12,7 +12,6 @@
       ./languagePlugins.nix
       ./performance.nix
     ];
-    performance.enable = false;
     environment.systemPackages = with pkgs; [
       #neovim dependencies
       xsel

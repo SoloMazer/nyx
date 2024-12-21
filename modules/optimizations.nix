@@ -23,16 +23,16 @@
       # for alternate days
       # dates = "Mon,Wed,Fri,Sun 04:40";
       flake = "/home/solomazer/.config/nixos/flake.nix";
-      flags = [
-        "--update-input" "nixpkgs"
-        "--update-input" "nixpkgs-stable"
-        "--update-input" "home-manager"
-        "--update-input" "nixvim"
-        "--update-input" "nix-flatpak"
-        "--update-input" "nixos-cosmic"
-        "--commit-lock-file"
-        # "--override-input" - very intresting flag, look it up later
-      ];
+      # flags = [
+      #   "--update-input" "nixpkgs"
+      #   "--update-input" "nixpkgs-stable"
+      #   "--update-input" "home-manager"
+      #   "--update-input" "nixvim"
+      #   "--update-input" "nix-flatpak"
+      #   "--update-input" "nixos-cosmic"
+      #   "--commit-lock-file"
+      #   # "--override-input" - very intresting flag, look it up later
+      # ];
       allowReboot = true;
       rebootWindow = {
         #WARN: If working in reboot window, change timings to prevent reboot without notice.

@@ -8,8 +8,6 @@
 
     environment.systemPackages = with pkgs; [
         ardour
-        vmpk
-        mamba
         yoshimi
     ];
 

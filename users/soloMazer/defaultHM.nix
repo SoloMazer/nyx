@@ -1,11 +1,12 @@
 # Lists all the custom system level modules 
 {
   imports = [
-    ./gnomeHM.nix
+    ./themes.nix
     ./zsh.nix
     ./tmux.nix
     ./kitty.nix
-    ./firefox.nix
+    ./firefox/firefox.nix
+    ./lf.nix
   ];
 
 }

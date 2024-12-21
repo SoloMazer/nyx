@@ -27,7 +27,6 @@
       ":q" = "exit";
       c = "clear";
       ls = "ls --color";
-      nh = "flatpak update && nh";
     };
   };
 }

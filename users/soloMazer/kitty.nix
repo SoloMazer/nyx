@@ -5,7 +5,7 @@
     shellIntegration.enableZshIntegration = true;
     settings = {
       font_size = "10.5";
-      background_opacity = "0.85";
+      background_opacity = "0.875";
       hide_window_decorations = true;
     };
     extraConfig = ''

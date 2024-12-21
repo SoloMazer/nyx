@@ -12,17 +12,14 @@
 
     environment.systemPackages = [
       pkgs.bottles
-      pkgs.lutris
-      pkgs.heroic
-      (pkgs.retroarch.override {
-        cores = [
-          pkgs.libretro.desmume
-          inputs.nixpkgs-stable.legacyPackages.${pkgs.system}.libretro.citra
-        ];
-      })
+      # pkgs.lutris
+      # pkgs.heroic
+      # pkgs.retroarch
+      # pkgs.libretro.desmume
+      # pkgs.libretro.citra
       # Recoding and editing software
-      pkgs.obs-studio
-      pkgs.kdenlive
+      # pkgs.obs-studio
+      # pkgs.kdenlive
     ];
 
 }

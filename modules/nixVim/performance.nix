@@ -1,10 +1,5 @@
 { config, lib, ... }:
 {
-  options = {
-    performance.enable = 
-    lib.mkEnableOption "Enables experimental performance upgades for nixvim";
-  };
-  config = lib.mkIf config.performance.enable {
     programs.nixvim = {
       # WARN: byteCompileLua converts lua to pre-compiled byte code
       # This Improves performance at the cost of 
@@ -35,5 +30,4 @@
         "mini.nvim"
       ];
     };
-  };
 }

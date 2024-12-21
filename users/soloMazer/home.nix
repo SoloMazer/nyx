@@ -35,9 +35,8 @@
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
     # # fonts?
-    (nerdfonts.override { fonts = [ "Hermit" ]; })
+    nerd-fonts.hurmit
     vscode
-    zed-editor
     okular
     vlc
     vivaldi
@@ -45,21 +44,31 @@
     discord
     obsidian
     texliveFull
-    kitty-themes
     krita
     inkscape
-    captive-browser
-    motrix
-    ferdium
     libreoffice-qt-fresh
-    xournalpp
     helvum
+    xfce.thunar
+    resources
+    blueman
     # # You can also create simple shell scripts directly inside your
     # # configuration. For example, this adds a command 'my-hello' to your
     # # environment:
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
+    gnome-tweaks
+    gnome-calendar
+    gnome-system-monitor
+    # Some nice gnome extensions
+    gnomeExtensions.pop-shell
+    gnomeExtensions.blur-my-shell
+    gnomeExtensions.caffeine
+    gnomeExtensions.media-controls
+    gnomeExtensions.user-themes
+    gnomeExtensions.compiz-alike-magic-lamp-effect
+    gnomeExtensions.hide-top-bar
+    gnomeExtensions.hot-edge
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
