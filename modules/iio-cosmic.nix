@@ -1,10 +1,9 @@
 { pkgs, ... }:
-
 let
   # Script to handle rotation
   iio-cosmic = pkgs.writeShellScriptBin "iio-cosmic" ''
     #!${pkgs.bash}/bin/bash
-    while true; do  
+    while true; do
       ${pkgs.iio-sensor-proxy}/bin/monitor-sensor | while IFS= read -r line
       do
         if [[ $line == *"Accelerometer orientation changed:"* ]]; then
@@ -37,8 +36,8 @@ in
   systemd.services.iio-cosmic = {
     description = "Automatic screen rotation service";
     wantedBy = [ "graphical.target" ];
-    after = [ "graphical.target" "iio-sensor-proxy.service"];
-    requires = ["iio-sensor-proxy.service"];
+    after = [ "graphical.target" "iio-sensor-proxy.service" ];
+    requires = [ "iio-sensor-proxy.service" ];
 
     serviceConfig = {
       ExecStart = "${iio-cosmic}/bin/iio-cosmic";
@@ -47,10 +46,9 @@ in
       Environment = [
         "DISPLAY=:1"
         "WAYLAND_DISPLAY=wayland-1"
-        "XDG_RUNTIME_DIR=/run/user/1000" 
+        "XDG_RUNTIME_DIR=/run/user/1000"
       ];
     };
-
   };
 
   # If your accelerometer needs a specific mount matrix, uncomment and modify this
@@ -60,5 +58,3 @@ in
   #   #  ACCEL_MOUNT_MATRIX=0, 1, 0; 1, 0, 0; 0, 0, 1
   # '';
 }
-
-

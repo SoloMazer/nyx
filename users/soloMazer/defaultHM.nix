@@ -1,4 +1,4 @@
-# Lists all the custom system level modules 
+# Lists all the custom system level modules
 {
   imports = [
     ./themes.nix
@@ -8,5 +8,4 @@
     ./firefox/firefox.nix
     ./lf.nix
   ];
-
 }

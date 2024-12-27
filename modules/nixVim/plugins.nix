@@ -1,10 +1,8 @@
 {
   programs.nixvim = {
-
     colorschemes.nord.enable = true;
 
     plugins = {
-
       dressing.enable = true; # for better ui plugin
       noice.enable = true; # expermental cool ui plugin
       indent-blankline.enable = true; # indent line support
@@ -14,11 +12,13 @@
       todo-comments.enable = true; # Make and Manage TODOs
       gitsigns.enable = true; # Git info in visual form
       trouble.enable = true; # Better display menu for diagnostics and errors
-      lualine = { # Status line
+      lualine = {
+        # Status line
         enable = true;
         settings.options.theme = "nord";
       };
-      yanky = { # yank manager
+      yanky = {
+        # yank manager
         enable = true;
         enableTelescope = true;
       };
@@ -34,7 +34,8 @@
         };
       };
       web-devicons.enable = true;
-      telescope = { #fuzzy finder
+      telescope = {
+        #fuzzy finder
         enable = true;
         highlightTheme = "nord";
         extensions = {
@@ -46,7 +47,6 @@
           undo.enable = true;
         };
       };
-
     };
   };
 }

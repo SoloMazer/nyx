@@ -1,7 +1,5 @@
-{ pkgs, ... }:
-{
+{ pkgs, ... }: {
   programs.nixvim = {
-
     # LaTex related plugins
     plugins.vimtex = {
       enable = true;
@@ -18,7 +16,7 @@
     ];
     extraConfigLua = ''
       require("cmake-tools").setup({
-        cmake_runner = { 
+        cmake_runner = {
           name = "toggleterm", -- Use 'toggleterm' as the runner
           opts = { -- Specific options for toggleterm
             direction = "float", -- Options: 'vertical', 'horizontal', 'tab', or 'float'
@@ -26,8 +24,8 @@
             auto_scroll = true, -- Automatically scroll to the bottom of the terminal
             singleton = true, -- Ensure a single instance of toggleterm is used for CMake output
           },
-          default_opts = { 
-            toggleterm = { 
+          default_opts = {
+            toggleterm = {
               direction = "float", -- Float mode for toggleterm
               close_on_exit = false,
               auto_scroll = true,
@@ -37,5 +35,5 @@
         },
       })
     '';
-  };   
+  };
 }

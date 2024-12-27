@@ -96,7 +96,7 @@ in
     package = pkgs.bibata-cursors-translucent;
     name = "Bibata_Spirit";
   };
-  gtk = { 
+  gtk = {
     theme = {
       package = pkgs.nordic;
       name = "Nordic";
@@ -108,9 +108,8 @@ in
   # Qt theming
   qt.enable = true;
   qt.platformTheme.name = "gtk";
-  qt.style = {  
+  qt.style = {
     name = "adwaita-dark";
     package = pkgs.adwaita-qt;
   };
 }
-

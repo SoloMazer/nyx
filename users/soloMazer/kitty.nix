@@ -7,6 +7,7 @@
       font_size = "10.5";
       background_opacity = "0.875";
       hide_window_decorations = true;
+      copy_on_select = "clipboard";
     };
     extraConfig = ''
 

@@ -1,6 +1,5 @@
 {
   programs.nixvim.plugins = {
-    
     # List of treesitter grammers to download
     treesitter = {
       enable = true;
@@ -70,7 +69,7 @@
     };
     cmp-cmdline = {
       enable = true; # autocomplete for cmdline
-    }; 
+    };
     lspkind = {
       enable = true;
       symbolMap = {
@@ -117,7 +116,7 @@
         dap-ui = {
           enable = true;
           floating.mappings = {
-            close = ["<ESC>" "q"];
+            close = [ "<ESC>" "q" ];
           };
         };
         dap-virtual-text = {

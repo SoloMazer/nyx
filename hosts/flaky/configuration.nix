@@ -1,15 +1,14 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ pkgs, inputs, ... }:
-
-{
-  imports = 
-    [ 
-      ./hardware-configuration.nix
-      ../../modules/default.nix
-    ];
+{ pkgs
+, inputs
+, ...
+}: {
+  imports = [
+    ./hardware-configuration.nix
+    ../../modules/default.nix
+  ];
 
   nix = {
     extraOptions = ''
@@ -21,7 +20,7 @@
 
   # Specify FLAKE varible to system flake for nh to find it
   environment.sessionVariables = {
-     FLAKE = "/home/solomazer/.config/nixos";
+    FLAKE = "/home/solomazer/.config/nixos";
   };
 
   # Screenrotation and iio-sensors
@@ -56,7 +55,7 @@
   i18n.defaultLocale = "en_US.UTF-8";
 
   i18n.extraLocaleSettings = {
-    # LC_ALL = "en_IN.UTF-8"; 
+    # LC_ALL = "en_IN.UTF-8";
     LC_ADDRESS = "en_IN";
     LC_IDENTIFICATION = "en_IN";
     LC_MEASUREMENT = "en_IN";
@@ -94,9 +93,9 @@
   users.users.solomazer = {
     isNormalUser = true;
     description = "SoloMazer";
-    extraGroups = [ "networkmanager" "wheel" "libvirtd" "audio"];
+    extraGroups = [ "networkmanager" "wheel" "libvirtd" "audio" ];
     packages = [
-    #  pkgs.thunderbird
+      #  pkgs.thunderbird
     ];
   };
 
@@ -114,7 +113,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    curl 
+    curl
     stow
     wget
     git
@@ -147,5 +146,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.11"; # Did you read the comment?
-
 }

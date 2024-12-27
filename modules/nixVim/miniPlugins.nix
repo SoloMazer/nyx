@@ -1,4 +1,4 @@
-{ 
+{
   programs.nixvim = {
     plugins.mini = {
       enable = true;
@@ -42,13 +42,13 @@
             };
           };
         };
-        comment = {};
-        surround = {};
-        sessions = {};
-        pairs = {};
-        icons = {};
-        animate = {};
-        hipatterns = {};
+        comment = { };
+        surround = { };
+        sessions = { };
+        pairs = { };
+        icons = { };
+        animate = { };
+        hipatterns = { };
       };
     };
     extraConfigLua = ''

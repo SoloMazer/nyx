@@ -1,6 +1,5 @@
 {
   programs.nixvim = {
-
     enableMan = true;
     clipboard.register = "unnamedplus";
     globals = {

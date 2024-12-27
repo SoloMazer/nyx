@@ -1,13 +1,11 @@
-{ pkgs, config, ... }:
-{
+{ pkgs
+, config
+, ...
+}: {
   programs.lf = {
     enable = true;
-    commands = {
-      
-    };
-    keybindings = {
-
-    };
+    commands = { };
+    keybindings = { };
     settings = {
       preview = true;
       hidden = true;

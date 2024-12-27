@@ -15,7 +15,7 @@
       prefix-highlight
     ];
     extraConfig = ''
-      
+
       # tmux status bar on top
       set-option -g status-position top
 
@@ -28,13 +28,13 @@
       # Shift arrow to switch windows
       bind -n S-Left  previous-window
       bind -n S-Right next-window
-      
+
       # Keybindings for tmux-yank
       # use "prefix + [" to enter copy mode
       bind-key -T copy-mode-vi v send-keys -X begin-selection
       bind-key -T copy-mode-vi C-v send-keys -X rectangle-toggle
       bind-key -T copy-mode-vi y send-keys -X copy-selection-and-cancel
-      
+
       # Split into cwd
       bind '"' split-window -v -c "#{pane_current_path}"
       bind % split-window -h -c "#{pane_current_path}"

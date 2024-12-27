@@ -1,6 +1,5 @@
-{pkgs, ... }:
-{
-  programs.nixvim = { 
+{ pkgs, ... }: {
+  programs.nixvim = {
     extraPlugins = [
       pkgs.vimPlugins.tabby-nvim
       (pkgs.vimUtils.buildVimPlugin {
@@ -31,7 +30,7 @@
           nerdfont = true, -- whether use nerdfont
           lualine_theme = nil, -- lualine theme name
         },
-      })     
+      })
 
       -- NOTE: Additional Config for neominimap
       vim.opt.wrap = false

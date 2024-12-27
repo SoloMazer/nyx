@@ -1,4 +1,4 @@
-# Lists all the custom system level modules 
+# Lists all the custom system level modules
 {
   imports = [
     ./nixVim/nixvim.nix
@@ -11,6 +11,6 @@
     ./cosmic.nix
     ./iio-cosmic.nix
     # ./llm.nix
+    # ./lxqt.nix
   ];
-
 }
